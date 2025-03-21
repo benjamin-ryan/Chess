@@ -1,3 +1,11 @@
-Chess
-=====
-Programmed in C, playable in the Command Line!
+# Chess
+
+<p align="center">
+  <img src="/images/titlescreen.png" alt="Titlescreen">
+</p>
+
+### Programmed in C, played in the Terminal!
+
+<p align="center">
+  <img src="/images/chessboard.png" alt="chessboard">
+</p>
