@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <locale.h>
 
 /*
 White = Uppercase, Black = Lowercase
@@ -22,15 +23,36 @@ char board[8][8] = {
     {'R', 'H', 'B', 'Q', 'K', 'B', 'H', 'R'}
 };
 
+
+void printPiece(char piece) {
+    switch(piece) {
+        case 'K': printf("%lc", 0x2654); break;  // White King ♔
+        case 'Q': printf("%lc", 0x2655); break;  // White Queen ♕
+        case 'R': printf("%lc", 0x2656); break;  // White Rook ♖
+        case 'B': printf("%lc", 0x2657); break;  // White Bishop ♗
+        case 'H': printf("%lc", 0x2658); break;  // White Knight ♘
+        case 'P': printf("%lc", 0x2659); break;  // White Pawn ♙
+        case 'k': printf("%lc", 0x265A); break;  // Black King ♚
+        case 'q': printf("%lc", 0x265B); break;  // Black Queen ♛
+        case 'r': printf("%lc", 0x265C); break;  // Black Rook ♜
+        case 'b': printf("%lc", 0x265D); break;  // Black Bishop ♝
+        case 'h': printf("%lc", 0x265E); break;  // Black Knight ♞
+        case 'p': printf("%lc", 0x265F); break;  // Black Pawn ♟
+        default: printf(" ");  // Empty square
+    }
+}
+
 void display()
 {
+    setlocale( LC_ALL, "en_US.UTF-8" );
     printf("\t    a   b   c   d   e   f   g   h\n");
     printf("\t  ---------------------------------\n");
     
     for (int i = 0; i < 8; i++) {
-        printf("\t%d |", 8 - i);  // Print row labels from 8 to 1
+        printf("\t%d | ", 8 - i);  // Print row labels from 8 to 1
         for (int j = 0; j < 8; j++) {
-            printf(" %c |", board[i][j]);  // Print each piece with a space and a pipe separator
+            printPiece(board[i][j]);
+            printf(" | ");  // Print each piece with a space and a pipe separator
         }
         printf("\n\t  ---------------------------------\n");
     }
@@ -101,24 +123,6 @@ int processMove(char* move, int turn)
     }
 
     return 0;
-}
-
-void printPiece(char piece) {
-    switch(piece) {
-        case 'K': printf("%lc", 0x2654); break;  // White King ♔
-        case 'Q': printf("%lc", 0x2655); break;  // White Queen ♕
-        case 'R': printf("%lc", 0x2656); break;  // White Rook ♖
-        case 'B': printf("%lc", 0x2657); break;  // White Bishop ♗
-        case 'H': printf("%lc", 0x2658); break;  // White Knight ♘
-        case 'P': printf("%lc", 0x2659); break;  // White Pawn ♙
-        case 'k': printf("%lc", 0x265A); break;  // Black King ♚
-        case 'q': printf("%lc", 0x265B); break;  // Black Queen ♛
-        case 'r': printf("%lc", 0x265C); break;  // Black Rook ♜
-        case 'b': printf("%lc", 0x265D); break;  // Black Bishop ♝
-        case 'h': printf("%lc", 0x265E); break;  // Black Knight ♞
-        case 'p': printf("%lc", 0x265F); break;  // Black Pawn ♟
-        default: printf(" ");  // Empty square
-    }
 }
 
 void clear()
